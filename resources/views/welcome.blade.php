@@ -82,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    SwitchCop
+                     Switch<span style='color:red;'>Cop</span>
                 </div>
                 <div>
                      <h2>Mesto gde seremo o switch igrama</h2>
