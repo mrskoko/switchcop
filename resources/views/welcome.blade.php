@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>SwitchUp</title>
+        <title>SwitchCop</title>
 
 
         <!-- Fonts -->
@@ -82,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    SwitchUp
+                    SwitchCop
                 </div>
                 <div>
                      <h2>Mesto gde seremo o switch igrama</h2>
