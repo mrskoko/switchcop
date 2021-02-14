@@ -81,36 +81,26 @@
                 text-decoration:none;
             }
             a{
-                font-size: 22px;
+                font-size: 18px;
                 color:8c8c8c;
             }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                     Switch<span style='color:red;'>Cop</span>
-                </div>
-                <div>
-                     <h2>Mesto gde seremo o switch igrama</h2>
-                     <h3><a href="{{ url('/games')}}">Games</a></h3>
-                </div>
-            </div>
+        <div class="flex-center">
+            <h2>Games</h2>
         </div>
+        <div class="flex-center position-ref ">
+            <ul>
+                @foreach($games as $game)
+                    <li>
+                       <a href="{{ url('games/'.$game->id) }}">{{$game->name}}</a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+         <h4 class="flex-center">
+               <a href="{{ url('/')}}">Back</a>
+            </h4>
     </body>
 </html>

@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('games', 'GameController@show');
+Route::get('games/{id}', 'GameController@showGame');
