@@ -1,98 +1,61 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Http\Controllers;
-
-use App\game;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
+use App\Services\GameService\GameServiceInterface;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+	private $gameServiceInterface;
+
+	public function __construct(GameServiceInterface $gameServiceInterface)
+	{
+		$this->gameServiceInterface = $gameServiceInterface;
+	}
+
+	public function getAllGames()
+	{
+
+		$allGames = $this->gameServiceInterface->getAllGames();
+	    //return response()->json($allGames);
+		return view('games', compact('allGames'));
+	}
+
+	public function getGame(int $id)
+	{
+		$game = $this->gameServiceInterface->getGame($id);
+		//return response()->json($game);
+		return view('gameSingle', compact('game'));
+	}
+	
+	public function create(Request $request)
+	{
+		$this->gameServiceInterface->create($request->all());
+		return redirect('/games');
+	}
+	
+	public function update(Request $request)
+	{
+		$this->gameServiceInterface->update((int)$request->id, $request->all());
+		return redirect('/games');
+	}
+	
+	public function delete(int $id)
+	{
+		$this->gameServiceInterface->delete($id);
+		return redirect('/games');
+	}	
+
     public function index()
     {
-        //
+    	return view('welcome');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function addGame()
     {
-        //
+    	return view('gamesAdd');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function show(game $game)
-    {
-        $games = DB::table('games')->select("games.*")->get();
-
-        return view('games', compact('games'));    
-    }
-
-    public function showGame($id)
-    {
-        $game_by_id = Game::find($id);
-      
-        return view('games_single', compact('game_by_id'));    
-
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(game $game)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, game $game)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(game $game)
-    {
-        //
-    }
 }

@@ -1,4 +1,4 @@
-<!DO<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -92,7 +92,7 @@
         </div>
         <div class="flex-center position-ref ">
             <ul>
-                @foreach($games as $game)
+                @foreach($allGames as $game)
                     <li>
                        <a href="{{ url('games/'.$game->id) }}">{{$game->name}}</a>
                     </li>
@@ -100,7 +100,8 @@
             </ul>
         </div>
          <h4 class="flex-center">
-               <a href="{{ url('/')}}">Back</a>
+               <a style='margin-right:60px;' href="{{ url('/')}}">Back</a>
+               <a href="{{url('gamesAdd')}}">Add</a> 
             </h4>
     </body>
 </html>

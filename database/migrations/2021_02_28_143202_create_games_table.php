@@ -14,10 +14,13 @@ class CreateGamesTable extends Migration
     public function up()
     {
         Schema::create('games', function (Blueprint $table) {
-            $table->id();
             $table->increments('id');
-            $table->timestamps();
-        });
+            $table->string('name', 16)->collation('latin1_swedish_ci');
+            $table->text('description')->collation('latin1_swedish_ci');
+            $table->decimal('score', 3, 1);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
+        }); 
     }
 
     /**
