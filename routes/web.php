@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'GameController@index');
+Route::get('games', 'GameController@getAllGames');
+Route::get('games/{id}', 'GameController@getGame');
+
+Route::post('gameCreate', 'GameController@create');
+Route::post('gameUpdate', 'GameController@update');
+Route::get('gameDelete/{id}', 'GameController@delete');
+
+Route::view('gamesAdd', 'gamesAdd');

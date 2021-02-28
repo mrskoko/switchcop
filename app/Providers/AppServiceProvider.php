@@ -3,6 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\GameService\GameService;
+use App\Services\GameService\GameServiceInterface;
+use App\Repositories\GameRepository\GameRepository;
+use App\Repositories\GameRepository\GameRepositoryInterface;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +18,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        app()->singleton(GameServiceInterface::class, GameService::class);
+        app()->singleton(GameRepositoryInterface::class, GameRepository::class);
     }
 
     /**
